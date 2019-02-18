@@ -1,0 +1,8 @@
+rshift=rshift
+rshift()=
+rshift(1, 2)=1
+rshift(rshift(a, b, c))=a
+last=last
+last()=
+last(1)=1
+last(a, b, c)=c
