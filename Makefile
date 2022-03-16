@@ -1,5 +1,5 @@
-TEST_DIR := lib-test
-LIB_DIR := lib
+DIR_TEST := lib-test
+DIR_LIB := lib
 
 SEP1 := \`
 SEP2 := \'
@@ -13,11 +13,11 @@ all:
 
 # gen m4_ prefix ilb
 gen:
-	$(SED) $(LIB_DIR)/util.m4 > util.m4
+	$(SED) $(DIR_LIB)/util.m4 > util.m4
 
 test:
-	cd $(TEST_DIR) && make test
+	cd $(DIR_TEST) && make
 
 clean:
 	-rm *.m4
-	cd $(TEST_DIR) && make clean
+	cd $(DIR_TEST) && make clean

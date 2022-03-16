@@ -1,14 +1,16 @@
 #!/bin/bash
+UTIL_DIR=../lib
+
 log() {
     echo "### $@ ###"
 }
 
 log util.m4 test
-cat util.m4 | m4 && echo util is OK || util is NG
+cat util.m4.test | m4 && echo util is OK || util is NG
 echo ''
 
 log xml.m4 test
-RESULT=$(cat ../util.m4 ../xml.m4 ./xml.m4 | m4)
+RESULT=$(cat xml.m4.test | m4)
 printf "%s\n" "$RESULT"
 if [ "$(printf "%s\n" "$RESULT" | xmllint --html --xpath '//a/text()' -)" == "str" ]; then
     echo OK

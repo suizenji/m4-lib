@@ -1,13 +1,10 @@
-test: deploy gentest dotest
+all: maketest dotest
 
-deploy:
-	cp ../lib/util.m4 .
-
-gentest:
-	bash gentest.sh
+maketest:
+	bash make.sh
 
 dotest:
-	bash dotest.sh
+	bash test.sh
 
 clean:
-	-rm *.test *.m4
+	-rm *.test
