@@ -1,10 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 log() {
     echo "### $@ ###"
 }
 
 log util.m4 test
 cat util.m4 | m4 && echo util is OK || util is NG
+echo ''
 
 log xml.m4 test
 RESULT=$(cat ../util.m4 ../xml.m4 ./xml.m4 | m4)

@@ -1,10 +1,10 @@
 all: gen test
 
 gen:
-	sh make.sh
+	bash make.sh
 
 test:
-	sh test.sh
+	bash test.sh
 
 clean:
 	rm util.m4 xml.m4
