@@ -1,12 +1,12 @@
 #!/bin/bash
-UTIL_DIR=../lib
+set -e
 
 log() {
     echo "### $@ ###"
 }
 
 log util.m4 test
-cat util.m4.test | m4 && echo util is OK || util is NG
+cat util.m4.test | m4
 echo ''
 
 log xml.m4 test
