@@ -6,11 +6,20 @@ SEP1 := \`
 SEP2 := \'
 PREF :=
 
-SED := sed -E "s/([[:alpha:]][[:alnum:]_]+)/$(PREF)\1/g"
+# TODO sed separator
+SED := sed -E \
+	-e "s/([[:alpha:]][[:alnum:]_]+)/$(PREF)\1/g" \
+	-e "s/\`/$(SEP1)/g" \
+	-e "s/'/$(SEP2)/g"
 
 all:
-#	@echo SEP1[$(SEP1)]
-#	@echo SEP2[$(SEP2)]
+	@echo SEP1[$(SEP1)]
+	@echo SEP2[$(SEP2)]
+	@echo PREF[$(PREF)]
+#	@echo
+#	@cat $(DIR_LIB_DEF)/util.m4
+#	@echo
+	$(SED) $(DIR_LIB_DEF)/util.m4
 
 # gen m4_ prefix ilb
 genlib:
