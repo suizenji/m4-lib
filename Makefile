@@ -12,7 +12,9 @@ SED := sed -E \
 	-e "s/\`/$(SEP1)/g" \
 	-e "s/'/$(SEP2)/g"
 
-all:
+all: clean genlib test
+
+debug:
 	@echo SEP1[$(SEP1)]
 	@echo SEP2[$(SEP2)]
 	@echo PREF[$(PREF)]
@@ -27,7 +29,7 @@ genlib:
 	$(SED) $(DIR_LIB_DEF)/xml.m4 > $(DIR_LIB)/xml.m4
 
 test:
-	cd $(DIR_TEST) && make
+	cd $(DIR_TEST) && make PREF=$(PREF)
 
 clean:
 	-rm $(DIR_LIB)/*.m4

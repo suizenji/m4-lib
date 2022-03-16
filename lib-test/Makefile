@@ -4,7 +4,8 @@ maketest:
 	bash make.sh
 
 dotest:
-	bash test.sh
+#	echo PREF=$(PREF)
+	bash test.sh $(PREF)
 
 clean:
 	-rm *.test
