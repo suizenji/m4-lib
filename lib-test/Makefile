@@ -1,4 +1,7 @@
-test: gentest dotest
+test: deploy gentest dotest
+
+deploy:
+	cp ../util.m4 .
 
 gentest:
 	bash gentest.sh
