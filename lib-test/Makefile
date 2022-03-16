@@ -1,7 +1,7 @@
 test: deploy gentest dotest
 
 deploy:
-	cp ../util.m4 .
+	cp ../lib/util.m4 .
 
 gentest:
 	bash gentest.sh
