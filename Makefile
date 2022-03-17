@@ -1,3 +1,4 @@
+export
 include .env
 
 DIR_TEST := $(shell readlink -f $(DIR_TEST))
@@ -10,22 +11,27 @@ PREF :=
 
 # TODO sed separator
 SED := sed -E \
-	-e "s/([[:alpha:]][[:alnum:]_]+)/$(PREF)\1/g" \
+	-e "s/([[:alpha:]][[:alnum:]_]*)/$(PREF)\1/g" \
 	-e "s/\`/$(SEP1)/g" \
 	-e "s/'/$(SEP2)/g"
 
 all: clean genlib test
 
 debug:
-	@echo SEP1[$(SEP1)]
-	@echo SEP2[$(SEP2)]
-	@echo PREF[$(PREF)]
-	@echo make DIR_TEST=[$(DIR_TEST)]
-	@echo make DIR_LIB=[$(DIR_LIB)]
-	@echo make DIR_LIB_DEF=[$(DIR_LIB_DEF)]
-	@echo env  DIR_TEST=[$$DIR_TEST]
-	@echo env  DIR_LIB=[$$DIR_LIB]
-	@echo env  DIR_LIB_DEF=[$$DIR_LIB_DEF]
+	@echo mak SEP1[$(SEP1)]
+	@echo mak SEP2[$(SEP2)]
+	@echo mak PREF[$(PREF)]
+	@echo env SEP1[$${SEP1}]
+	@echo env SEP2[$${SEP2}]
+	@echo env PREF[$${PREF}]
+	@echo mak DIR_TEST=[$(DIR_TEST)]
+	@echo mak DIR_LIB=[$(DIR_LIB)]
+	@echo mak DIR_LIB_DEF=[$(DIR_LIB_DEF)]
+	@echo env DIR_TEST=[$$DIR_TEST]
+	@echo env DIR_LIB=[$$DIR_LIB]
+	@echo env DIR_LIB_DEF=[$$DIR_LIB_DEF]
+	@echo mak sed[$(SED)]
+	@echo env sed[$$SED]
 	@echo
 	@echo default util
 	@cat $(DIR_LIB_DEF)/util.m4
