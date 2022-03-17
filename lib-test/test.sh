@@ -1,11 +1,16 @@
 #!/bin/bash
 set -e
 
-if ((${#1})); then
+if ((${#PREF})); then
     M4='m4 --prefix-builtins'
 else
     M4='m4'
 fi
+
+echo SEP1=$SEP1
+echo SEP2=$SEP2
+echo PREF=$PREF
+echo M4=$M4
 
 log() {
     echo "### $@ ###"

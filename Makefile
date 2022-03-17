@@ -29,7 +29,7 @@ genlib:
 	$(SED) $(DIR_LIB_DEF)/xml.m4 > $(DIR_LIB)/xml.m4
 
 test:
-	cd $(DIR_TEST) && make PREF=$(PREF)
+	cd $(DIR_TEST) && PREF=$(PREF) SEP1=$(SEP1) SEP2=$(SEP2) make
 
 clean:
 	-rm $(DIR_LIB)/*.m4
