@@ -1,11 +1,13 @@
 all: maketest dotest
 
-maketest:
+maketest: regular
 	bash make.sh
-	$(SED) -i *.test
+
+regular:
+	for i in *.sce; do $(SED) $$i > $${i%.*}.reg; done
 
 dotest:
 	bash test.sh
 
 clean:
-	-rm *.test
+	-rm *.reg *.test
