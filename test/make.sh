@@ -14,7 +14,7 @@ prepare() {
     TARGET=util.m4.test
     prepare ${TARGET}
     echo "${PREF}include(${DIR_LIB}/util.m4)${PREF}dnl" >> ${TARGET}
-    cat ${TARGET%.*}.reg | awk '
+    cat ${TARGET%.*}.regular | awk '
 BEGIN {
   FS="="; S1=ENVIRON["SEP1"]; S2=ENVIRON["SEP2"]; P=ENVIRON["PREF"]
 }
