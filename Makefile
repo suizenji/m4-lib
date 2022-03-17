@@ -1,6 +1,8 @@
-DIR_TEST := test
-DIR_LIB := lib
-DIR_LIB_DEF := lib-default
+include .env
+
+DIR_TEST := $(shell readlink -f $(DIR_TEST))
+DIR_LIB := $(shell readlink -f $(DIR_LIB))
+DIR_LIB_DEF := $(shell readlink -f $(DIR_LIB_DEF))
 
 SEP1 := \`
 SEP2 := \'
@@ -18,10 +20,21 @@ debug:
 	@echo SEP1[$(SEP1)]
 	@echo SEP2[$(SEP2)]
 	@echo PREF[$(PREF)]
-#	@echo
-#	@cat $(DIR_LIB_DEF)/util.m4
-#	@echo
-	$(SED) $(DIR_LIB_DEF)/util.m4
+	@echo make DIR_TEST=[$(DIR_TEST)]
+	@echo make DIR_LIB=[$(DIR_LIB)]
+	@echo make DIR_LIB_DEF=[$(DIR_LIB_DEF)]
+	@echo env  DIR_TEST=[$$DIR_TEST]
+	@echo env  DIR_LIB=[$$DIR_LIB]
+	@echo env  DIR_LIB_DEF=[$$DIR_LIB_DEF]
+	@echo
+	@echo default util
+	@cat $(DIR_LIB_DEF)/util.m4
+	@echo
+	@echo gen util
+	@$(SED) $(DIR_LIB_DEF)/util.m4
+	@echo
+	@echo statement
+	$(SED) $(DIR_LIB_DEF)/util.m4 >/dev/null
 
 # gen m4_ prefix ilb
 genlib:
