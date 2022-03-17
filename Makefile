@@ -43,7 +43,10 @@ genlib:
 
 .PHONY: test
 test:
-	cd $(DIR_TEST) && PREF=$(PREF) SEP1=$(SEP1) SEP2=$(SEP2) make
+	cd $(DIR_TEST) && \
+	PREF=$(PREF) SEP1=$(SEP1) SEP2=$(SEP2) \
+	DIR_LIB=$(DIR_LIB) \
+	make
 
 clean:
 	-rm $(DIR_LIB)/*.m4
