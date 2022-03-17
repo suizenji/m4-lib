@@ -1,7 +1,8 @@
 #!/bin/bash
+
 changequote() {
-    printf "changequote(,)"
-    printf "changequote(%s,%s)" "$SEP1" "$SEP2"
+    printf "${PREF}changequote(,)"
+    printf "${PREF}changequote(%s,%s)" "$SEP1" "$SEP2"
 }
 
 prepare() {
@@ -12,10 +13,15 @@ prepare() {
 (
     TARGET=util.m4.test
     prepare ${TARGET}
-    echo "include(${DIR_LIB}/util.m4)dnl" >> ${TARGET}
+    echo "${PREF}include(${DIR_LIB}/util.m4)${PREF}dnl" >> ${TARGET}
     cat ${TARGET%.*}.reg | awk '
-  BEGIN { FS="="; S1=ENVIRON["SEP1"]; S2=ENVIRON["SEP2"]; }
-  {print ++i, S1 $0 S2, "ifelse(" $1 "," S1 $2 S2 ", " S1 "OK" S2 ", " S1 "NG m4exit(1)" S2 ")"}
+BEGIN {
+  FS="="; S1=ENVIRON["SEP1"]; S2=ENVIRON["SEP2"]; P=ENVIRON["PREF"]
+}
+{
+  print ++i, S1 $0 S2,
+  P "ifelse(" $1 "," S1 $2 S2 ", " S1 "OK" S2 ", " S1 "NG " P "m4exit(1)" S2 ")"
+}
 ' >> ${TARGET}
 )
 
@@ -25,10 +31,10 @@ prepare() {
     prepare xml.m4.test
     cat ${DIR_LIB}/util.m4 ${DIR_LIB}/xml.m4 >> ${TARGET}
     cat <<EOT >> ${TARGET}
-e(html,
-  e(head)
-  e(body,
-    e(a, href="", str)
+${PREF}e(html,
+  ${PREF}e(head)
+  ${PREF}e(body,
+    ${PREF}e(a, href="", str)
   )
 )
 EOT
