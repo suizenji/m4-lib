@@ -9,17 +9,22 @@ prepare() {
 }
 
 # gen util.m4 test case
-prepare util.m4.test
-echo "include(${DIR_LIB}/util.m4)dnl" >> util.m4.test
-cat util.m4.txt | awk -v C1='`' -v C2="'" '
-  BEGIN { FS="="; }
-  {print ++i, C1 $0 C2, "ifelse(" $1 "," C1 $2 C2 ", " C1 "OK" C2 ", " C1 "NG m4exit(1)" C2 ")"}
-' >> util.m4.test
+(
+    TARGET=util.m4.test
+    prepare ${TARGET}
+    echo "include(${DIR_LIB}/util.m4)dnl" >> ${TARGET}
+    cat util.m4.txt | awk '
+  BEGIN { FS="="; S1=ENVIRON["SEP1"]; S2=ENVIRON["SEP2"]; }
+  {print ++i, S1 $0 S2, "ifelse(" $1 "," S1 $2 S2 ", " S1 "OK" S2 ", " S1 "NG m4exit(1)" S2 ")"}
+' >> ${TARGET}
+)
 
 # gen xml.m4 test case
-prepare xml.m4.test
-cat ${DIR_LIB}/util.m4 ${DIR_LIB}/xml.m4 >> xml.m4.test
-cat <<EOT >> xml.m4.test
+(
+    TARGET=xml.m4.test
+    prepare xml.m4.test
+    cat ${DIR_LIB}/util.m4 ${DIR_LIB}/xml.m4 >> ${TARGET}
+    cat <<EOT >> ${TARGET}
 e(html,
   e(head)
   e(body,
@@ -27,3 +32,4 @@ e(html,
   )
 )
 EOT
+)
