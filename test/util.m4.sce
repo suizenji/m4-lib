@@ -8,4 +8,3 @@ last()=
 last(1)=1
 last(a, b, c)=c
 last(`true')=true
-regexp(rand, `[0-9]+')=0

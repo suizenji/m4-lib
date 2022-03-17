@@ -1,10 +1,13 @@
-all: gen test
+all: maketest dotest
 
-gen:
+maketest: regular
 	bash make.sh
 
-test:
+regular:
+	for i in *.sce; do $(SED) $$i > $${i%.*}.reg; done
+
+dotest:
 	bash test.sh
 
 clean:
-	rm util.m4 xml.m4
+	-rm *.reg *.test
