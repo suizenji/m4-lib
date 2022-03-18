@@ -1,13 +1,15 @@
-# my m4 library
-gnu make generates library and puts it on lib directory.
+# My M4 Library
+Generate library and put it on lib directory.
 
-## usage
-ex)
-$ make  
-$ make SEP1=\[ SEP2=]  
-$ make PREF=m4_  
+## Usage
+ex)  
+```
+$ make
+$ make SEP1=[ SEP2=]
+$ make PREF=m4_
+```
 
-## c lambda
+## C Lambda
 ```
 $ cat example.c.m4
 include(util.m4)dnl
