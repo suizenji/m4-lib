@@ -11,11 +11,11 @@ PREF :=
 
 # TODO sed separator
 SED := sed -E \
-	-e "s/([[:alpha:]][[:alnum:]_]*)/$(PREF)\1/g" \
+	-e "s/([[:alpha:]_][[:alnum:]_]*)/$(PREF)\1/g" \
 	-e "s/\`/$(SEP1)/g" \
 	-e "s/'/$(SEP2)/g"
 
-all: clean genlib test
+all: clean lib test
 
 debug:
 	@echo mak SEP1[$(SEP1)]
@@ -42,10 +42,11 @@ debug:
 	@echo statement
 	$(SED) $(DIR_LIB_DEF)/util.m4 >/dev/null
 
-# gen m4_ prefix ilb
-genlib:
-	$(SED) $(DIR_LIB_DEF)/util.m4 > $(DIR_LIB)/util.m4
-	$(SED) $(DIR_LIB_DEF)/xml.m4 > $(DIR_LIB)/xml.m4
+.PHONY: lib
+lib:
+	for i in $(DIR_LIB_DEF)/*; do \
+	    $(SED) $$i > $(DIR_LIB)/$${i##*/}; \
+	done
 
 .PHONY: test
 test:
