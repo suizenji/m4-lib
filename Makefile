@@ -11,7 +11,7 @@ PREF :=
 
 # TODO sed separator
 SED := sed -E \
-	-e "s/([[:alpha:]][[:alnum:]_]*)/$(PREF)\1/g" \
+	-e "s/([[:alpha:]_][[:alnum:]_]*)/$(PREF)\1/g" \
 	-e "s/\`/$(SEP1)/g" \
 	-e "s/'/$(SEP2)/g"
 
