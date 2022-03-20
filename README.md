@@ -11,28 +11,42 @@ $ make PREF=m4_
 
 ## C Lambda
 ```
-$ cat example.c.m4
-include(util.m4)dnl
-include(lambda.m4)dnl
+$ cat check.c.m4
+include(./util.m4)dnl
+include(./lambda.m4)dnl
 #include <stdio.h>
+
 // __LAMDEF__
 
-int main() {
-    printf("2 x 3 = %d\n", _(int , int i, int j, return i * j;)`'(2,3));
+int main(void) {
+    int (*l0)() = _(int , return 0;);
+    char *l1 = _(char *, return "str";)`'();
+    int l2l3 = _(int , int i, int j, return i * j;)`'(2, _(int , int k, return k;)`'(3));
+
+    return 0;
+}
+$ m4 check.c.m4
+#include <stdio.h>
+
+// __LAMDEF__
+static int lambda0();
+static char *lambda1();
+static int lambda2(int i,int j);
+static int lambda3(int k);
+
+int main(void) {
+    int (*l0)() = lambda0;
+    char *l1 = lambda1();
+    int l2l3 = lambda2(2, lambda3(3));
 
     return 0;
 }
 
-$ m4 example.c.m4
-#include <stdio.h>
-// __LAMDEF__
-int lambda0(int i,int j);
+static int lambda0() {return 0;}
 
+static char *lambda1() {return "str";}
 
-int main() {
-    printf("2 x 3 = %d\n", lambda0(2,3));
+static int lambda2(int i,int j) {return i * j;}
 
-    return 0;
-}
-int lambda0(int i,int j) {return i * j;}
+static int lambda3(int k) {return k;}
 ```
