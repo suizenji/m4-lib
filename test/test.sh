@@ -7,6 +7,7 @@ else
     M4='m4'
 fi
 
+# debug
 echo SEP1=$SEP1
 echo SEP2=$SEP2
 echo PREF=$PREF

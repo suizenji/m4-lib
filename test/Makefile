@@ -1,3 +1,4 @@
+#test: maketest dotest
 all: maketest dotest
 
 maketest: regular

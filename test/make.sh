@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SEP1=${SEP1/\\/}
+SEP2=${SEP2/\\/}
+
 changequote() {
     printf "${PREF}changequote(,)"
     printf "${PREF}changequote(%s,%s)" "$SEP1" "$SEP2"
