@@ -8,7 +8,13 @@ DIR_LAMBDA := c-lambda
 
 SEP1 := \`
 SEP2 := \'
-PREF :=
+#PREF :=
+
+ifeq ($(origin PREF), undefined)
+M4 := m4
+else
+M4 := m4 --prefix-builtins
+endif
 
 # TODO sed separator
 SED := sed -E \

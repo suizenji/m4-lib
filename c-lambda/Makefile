@@ -7,7 +7,7 @@ all: clean lambda.out
 	$(CC) $< -o $@
 
 %.c:
-	m4 $@.m4 > $@
+	$(M4) $@.m4 > $@
 
 # for parent
 test: clean maketest check.out

@@ -1,12 +1,6 @@
 #!/bin/bash
 set -e
 
-if ((${#PREF})); then
-    M4='m4 --prefix-builtins'
-else
-    M4='m4'
-fi
-
 # debug
 echo SEP1=$SEP1
 echo SEP2=$SEP2
