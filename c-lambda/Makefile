@@ -9,5 +9,11 @@ all: clean lambda.out
 %.c:
 	m4 $@.m4 > $@
 
+test: clean maketest check.out
+	./check.out
+
+maketest:
+	bash make.sh > check.c.m4
+
 clean:
-	-rm *.c *.out
+	-rm *.c *.out check.c.m4
