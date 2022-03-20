@@ -4,6 +4,7 @@ include .env
 DIR_TEST := $(shell readlink -f $(DIR_TEST))
 DIR_LIB := $(shell readlink -f $(DIR_LIB))
 DIR_LIB_DEF := $(shell readlink -f $(DIR_LIB_DEF))
+DIR_LAMBDA := c-lambda
 
 SEP1 := \`
 SEP2 := \'
@@ -44,14 +45,16 @@ debug:
 
 .PHONY: lib
 lib:
-	for i in $(DIR_LIB_DEF)/*; do \
+	@for i in $(DIR_LIB_DEF)/*; do \
 	    $(SED) $$i > $(DIR_LIB)/$${i##*/}; \
 	done
 
 .PHONY: test
 test:
 	cd $(DIR_TEST) && make
+	cd $(DIR_LAMBDA) && make test
 
 clean:
-	-rm $(DIR_LIB)/*.m4
+	-@rm $(DIR_LIB)/*.m4
 	cd $(DIR_TEST) && make clean
+	cd $(DIR_LAMBDA) && make clean
