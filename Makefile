@@ -58,7 +58,6 @@ lib:
 .PHONY: test
 test:
 	cd $(DIR_TEST) && make
-	cd $(DIR_LAMBDA) && make test
 
 clean:
 	-@rm $(DIR_LIB)/*.m4

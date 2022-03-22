@@ -1,13 +1,13 @@
 .PRECIOUS: %.c
 
-all: clean lambda.out
-	./lambda.out
+all: clean c-lambda.out
+	./c-lambda.out
 
 %.out: %.c
 	$(CC) $< -o $@
 
 %.c:
-	$(M4) $@.m4 > $@
+	m4 $@.m4 > $@
 
 # for parent
 test: clean maketest check.out

@@ -1,5 +1,5 @@
 include(util.m4)dnl
-include(lambda.m4)dnl
+include(c-lambda.m4)dnl
 #include <stdio.h>
 
 int calc(int (*)(int, int));

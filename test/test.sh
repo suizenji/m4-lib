@@ -1,12 +1,6 @@
 #!/bin/bash
 set -e
 
-# debug
-echo SEP1=$SEP1
-echo SEP2=$SEP2
-echo PREF=$PREF
-echo M4=$M4
-
 log() {
     echo "### $@ ###"
 }
