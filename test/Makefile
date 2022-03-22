@@ -11,4 +11,4 @@ dotest:
 	bash test.sh
 
 clean:
-	-@rm *.regular *.test
+	-@rm *.regular *.test *.c *.out

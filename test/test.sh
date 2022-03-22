@@ -24,3 +24,7 @@ else
     echo NG
 fi
 
+log util.m4 test
+cat c-lambda.m4.test | $M4 > c-lambda.c
+cc c-lambda.c -o c-lambda.out
+./c-lambda.out && echo OK || echo NG
