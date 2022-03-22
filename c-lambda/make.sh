@@ -6,7 +6,7 @@ cat <<EOF
 ${PREF}changequote(,)${PREF}dnl
 ${PREF}changequote($SEP1,$SEP2)${PREF}dnl
 ${PREF}include(${DIR_LIB}/util.m4)${PREF}dnl
-${PREF}include(${DIR_LIB}/lambda.m4)${PREF}dnl
+${PREF}include(${DIR_LIB}/c-lambda.m4)${PREF}dnl
 #include <stdio.h>
 
 // __LAMDEF__
