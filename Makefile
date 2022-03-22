@@ -51,9 +51,9 @@ debug:
 
 .PHONY: lib
 lib:
-	@for i in $(DIR_LIB_DEF)/*; do \
-	    $(SED) $$i > $(DIR_LIB)/$${i##*/}; \
-	done
+	$(SED) $(DIR_LIB_DEF)/util.m4 > $(DIR_LIB)/util.m4
+	$(SED) $(DIR_LIB_DEF)/xml.m4 > $(DIR_LIB)/xml.m4
+	$(SED) -e 's/m4_(static|__LAMDEF__)/\1/g' $(DIR_LIB_DEF)/lambda.m4 > $(DIR_LIB)/lambda.m4
 
 .PHONY: test
 test:
