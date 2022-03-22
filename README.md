@@ -11,9 +11,9 @@ $ make PREF=m4_
 
 ## C Lambda
 ```
-$ cat check.c.m4
-include(./util.m4)dnl
-include(./lambda.m4)dnl
+$ cat c-lambda.c.m4
+include(/path/to/util.m4)dnl
+include(/path/to/lambda.m4)dnl
 #include <stdio.h>
 
 // __LAMDEF__
@@ -25,7 +25,7 @@ int main(void) {
 
     return 0;
 }
-$ m4 check.c.m4
+$ m4 c-lambda.c.m4
 #include <stdio.h>
 
 // __LAMDEF__
